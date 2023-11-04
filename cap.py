@@ -34,8 +34,8 @@ test_transforms = transforms.Compose(
     ]
 )
 
-def get_images_for_one_patient_from_fns():
-    dir_path = '/content/gdrive/My Drive/Genius'
+def get_images_for_one_patient_from_fns(folder):
+    dir_path = f'/content/gdrive/My Drive/{folder}'
     fns_for_one_pt = [f'{dir_path}/{fn}' for fn in os.listdir(dir_path)]
     images_for_one_pt = [test_transforms(Image.open(fn).convert('RGB')) for fn in fns_for_one_pt]
     study_for_one_pt = torch.stack(images_for_one_pt, dim=0)
@@ -43,8 +43,8 @@ def get_images_for_one_patient_from_fns():
     # images = torch.nn.utils.rnn.pad_sequence([study_for_one_pt], batch_first=True, padding_value=0.0)
     return study_for_one_pt
 
-def get_captions():
-    images = get_images_for_one_patient_from_fns()
+def get_captions(folder='Genius'):
+    images = get_images_for_one_patient_from_fns(folder)
     outputs = encoder_decoder.generate(
         pixel_values=images.to(device),
         bos_token_id=tokenizer.bos_token_id,
@@ -61,4 +61,4 @@ def get_captions():
         print(c)
     return captions
 
-get_captions()
+get_captions('fromCrop')

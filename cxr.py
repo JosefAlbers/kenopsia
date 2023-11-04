@@ -93,9 +93,8 @@ def generate_report(images, prompt):
         print(f'Findings: {i}\nImpression: {j}\n')
     return findings, impression
 
-# def get_report(fns = ['/content/gdrive/My Drive/Genius/rectified_0.jpeg', '/content/gdrive/My Drive/Genius/rectified_1.jpeg']):
-def get_report():
-    dir_path = '/content/gdrive/My Drive/Genius'
+def get_report(folder='Genius'):
+    dir_path = f'/content/gdrive/My Drive/{folder}'
     fns = [f'{dir_path}/{fn}' for fn in os.listdir(dir_path)]
     images = get_images_for_one_patient_from_fns(fns)
 
@@ -107,4 +106,4 @@ def get_report():
 
     return findings, impression
 
-get_report()
+get_report('fromCrop')
