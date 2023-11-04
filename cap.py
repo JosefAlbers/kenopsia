@@ -43,7 +43,7 @@ def get_images_for_one_patient_from_fns(folder):
     # images = torch.nn.utils.rnn.pad_sequence([study_for_one_pt], batch_first=True, padding_value=0.0)
     return study_for_one_pt
 
-def get_captions(folder='Genius'):
+def go(folder='Genius'):
     images = get_images_for_one_patient_from_fns(folder)
     outputs = encoder_decoder.generate(
         pixel_values=images.to(device),
@@ -61,4 +61,4 @@ def get_captions(folder='Genius'):
         print(c)
     return captions
 
-get_captions('fromCrop')
+go('fromCrop')

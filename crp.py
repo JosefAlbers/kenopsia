@@ -74,7 +74,7 @@ hf_hub_download(
 )
 cropper = load_model(model_path)
 
-def crop(folder_in='forCrop', folder_out='fromCrop'):
+def go(folder_in='forCrop', folder_out='fromCrop'):
     dir_in = f'/content/gdrive/My Drive/{folder_in}'
     dir_out = f'/content/gdrive/My Drive/{folder_out}'
     images = [(fn, f'{dir_in}/{fn}', f'{dir_out}/{fn}.png') for fn in os.listdir(dir_in)]
@@ -103,4 +103,4 @@ def crop(folder_in='forCrop', folder_out='fromCrop'):
         plt.subplot(133)
         plt.imshow(region)
 
-crop()
+go()
